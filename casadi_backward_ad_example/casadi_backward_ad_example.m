@@ -35,7 +35,7 @@ grad_cost = @(x) full(Jrev(x, 0, 1));
 
 % Solve the optimization problem using Matlab,s fminunc
 options = optimoptions('fminunc', 'GradObj', 'on', 'Algorithm', 'quasi-newton');
-[xstar2,fval2,exitflag2,output2] = fminunc(@(x) nls_casadi(x, cost, grad_cost), x0, options);
+[xstar2,fval2,exitflag2,output2] = fminunc(@(x) nls_wrapper(x, cost, grad_cost), x0, options);
 
 
 [t_fit2, y_fit2] = decay_oscillation(xstar2, 0, 20, 100, 0, 0);
